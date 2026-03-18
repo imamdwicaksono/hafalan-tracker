@@ -5,6 +5,7 @@ import { supabase } from "@/lib/supabase/client"
 import { JUZ_MAP } from "@/config/juz"
 import { SURAH_LIST } from "@/config/surah"
 import { getNextHafalan } from "@/modules/hafalan/engine"
+import error from "next/error"
 
 
 export default function InputPage() {
