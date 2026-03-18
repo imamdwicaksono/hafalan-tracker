@@ -2,52 +2,75 @@
 
 import { useState } from "react"
 import { supabase } from "@/lib/supabase/client"
-import { useRouter } from "next/navigation"
 
 export default function RegisterPage() {
-  const router = useRouter()
-
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [loading, setLoading] = useState(false)
 
   const handleRegister = async () => {
-    const { error } = await supabase.auth.signUp({
+    setLoading(true)
+
+    const { data,error } = await supabase.auth.signUp({
       email,
       password
     })
 
+    setLoading(false)
+
     if (error) {
       alert(error.message)
-    } else {
-      alert("Register berhasil, silakan login")
-      router.push("/login")
+      return
     }
+
+    alert("Registrasi berhasil ✅, silakan login")
+
+    if (data.session) {
+        window.location.href = "/dashboard"
+    }
+    window.location.href = "/login"
   }
 
   return (
-    <div className="p-4 space-y-3">
-      <h1 className="text-xl font-bold">Register</h1>
+    <div className="p-4 flex items-center justify-center min-h-screen">
+      <div className="w-full max-w-sm space-y-4">
 
-      <input
-        type="email"
-        placeholder="Email"
-        className="border p-2 w-full"
-        onChange={(e) => setEmail(e.target.value)}
-      />
+        <h1 className="text-2xl font-bold text-center">
+          Daftar Akun
+        </h1>
 
-      <input
-        type="password"
-        placeholder="Password"
-        className="border p-2 w-full"
-        onChange={(e) => setPassword(e.target.value)}
-      />
+        <input
+          type="email"
+          placeholder="Email"
+          className="w-full border p-3 rounded-xl"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-      <button
-        onClick={handleRegister}
-        className="bg-blue-600 text-white p-2 w-full rounded"
-      >
-        Register
-      </button>
+        <input
+          type="password"
+          placeholder="Password"
+          className="w-full border p-3 rounded-xl"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <button
+          onClick={handleRegister}
+          disabled={loading}
+          className="w-full bg-green-600 text-white p-3 rounded-xl"
+        >
+          {loading ? "Loading..." : "Daftar"}
+        </button>
+
+        <p className="text-center text-sm">
+          Sudah punya akun?{" "}
+          <a href="/login" className="text-blue-600">
+            Login
+          </a>
+        </p>
+
+      </div>
     </div>
   )
 }

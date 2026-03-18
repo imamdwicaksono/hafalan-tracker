@@ -44,29 +44,42 @@ export default function LoginPage() {
     }
 
   return (
-    <div className="p-4 space-y-3">
-      <h1 className="text-xl font-bold">Login</h1>
+    <div className="p-4 flex items-center justify-center min-h-screen">
+      <div className="w-full max-w-sm space-y-4">
+        <h1 className="text-2xl font-bold text-center">
+          Login
+        </h1>
 
-      <input
-        type="email"
-        placeholder="Email"
-        className="border p-2 w-full"
-        onChange={(e) => setEmail(e.target.value)}
-      />
+        <input
+            type="email"
+            placeholder="Email"
+            className="border p-2 w-full"
+            onChange={(e) => setEmail(e.target.value)}
+        />
 
-      <input
-        type="password"
-        placeholder="Password"
-        className="border p-2 w-full"
-        onChange={(e) => setPassword(e.target.value)}
-      />
+        <input
+            type="password"
+            placeholder="Password"
+            className="border p-2 w-full"
+            onChange={(e) => setPassword(e.target.value)}
+        />
 
-      <button
-        onClick={handleLogin}
-        className="bg-green-600 text-white p-2 w-full rounded"
-      >
-        Login
-      </button>
+        <button
+            onClick={handleLogin}
+            className="bg-green-600 text-white p-2 w-full rounded"
+        >
+            Login
+        </button>
+
+            <p className="text-center text-sm">
+            Belum punya akun?{" "}
+            <a href="/register" className="text-blue-600">
+                Daftar
+            </a>
+            </p>
+        </div>
+
+
     </div>
   )
 }

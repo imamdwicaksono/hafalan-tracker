@@ -9,10 +9,6 @@ export default async function Dashboard() {
     data: { user }
   } = await supabase.auth.getUser()
 
-  if (!user) {
-    return <div>Unauthorized</div>
-  }
-
   const { data } = await supabase
     .from("hafalan_entries")
     .select("*")

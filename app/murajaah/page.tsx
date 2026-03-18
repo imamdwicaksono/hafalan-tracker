@@ -10,7 +10,6 @@ export default async function MurajaahPage() {
     data: { user }
   } = await supabase.auth.getUser()
 
-  if (!user) return <div>Unauthorized</div>
 
     const today = new Date().toISOString().split("T")[0]
 

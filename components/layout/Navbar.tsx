@@ -1,10 +1,23 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Drawer from "./Drawer"
+import { supabase } from "@/lib/supabase/client"
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+
+  const [user, setUser] = useState<any>(null)
+
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data }) => {
+      setUser(data.user)
+    })
+  }, [])
+
+  // ❌ belum login → jangan render navbar
+  if (!user) return null
+  
 
   return (
     <>

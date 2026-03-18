@@ -23,7 +23,6 @@ export default function InputPage() {
     const selectedSurah = SURAH_LIST.find(s => s.id === surah)
     const maxAyat = selectedSurah?.ayat || 1
 
-    
 
     const currentJuz = JUZ_MAP.find(j => j.juz === juz)
 
