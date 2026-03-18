@@ -27,9 +27,9 @@ export async function middleware(req: any) {
     data: { session }
   } = await supabase.auth.getSession()
 
-  console.log("SESSION:", session)
+  // console.log("SESSION:", session)
 
-  console.log("COOKIES:", req.cookies.getAll())
+  // console.log("COOKIES:", req.cookies.getAll())
 
   const path = req.nextUrl.pathname
 

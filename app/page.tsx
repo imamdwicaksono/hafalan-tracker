@@ -1,6 +1,7 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
 import LogoutButton from "@/components/LogoutButton"
 import { SURAH_LIST } from "@/config/surah"
+import { redirect } from "next/dist/server/api-utils"
 
 export default async function Dashboard() {
   const supabase = await createSupabaseServer()
@@ -10,7 +11,7 @@ export default async function Dashboard() {
   } = await supabase.auth.getUser()
 
   if (!user) {
-    return <div>Unauthorized</div>
+    redirect("/login")
   }
 
   const { data } = await supabase
