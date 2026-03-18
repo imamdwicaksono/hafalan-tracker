@@ -28,7 +28,7 @@ export async function middleware(req: any) {
   const path = req.nextUrl.pathname
   const isAuth = !!session
 
-  const publicRoutes = ["/login", "/register"]
+  const publicRoutes = ["/login", "/register", "/verify"]
 
   // ❌ belum login → redirect semua kecuali public
   if (!isAuth && !publicRoutes.includes(path)) {

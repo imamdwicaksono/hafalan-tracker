@@ -23,12 +23,11 @@ export default function RegisterPage() {
       return
     }
 
-    alert("Registrasi berhasil ✅, silakan login")
+    alert("Registrasi berhasil ✅, silakan verifikasi email kamu sebelum login")
 
-    if (data.session) {
-        window.location.href = "/dashboard"
-    }
-    window.location.href = "/login"
+    // 🔥 cek butuh verifikasi atau tidak
+    window.location.href = "/verify"
+    
   }
 
   return (
