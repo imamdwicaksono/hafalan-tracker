@@ -37,6 +37,10 @@ export async function middleware(req: any) {
     return NextResponse.redirect(new URL("/login", req.url))
   }
 
+  if (session && path === "") {
+    return NextResponse.redirect(new URL("/dashboard", req.url))  
+  }
+
   return res
 }
 
