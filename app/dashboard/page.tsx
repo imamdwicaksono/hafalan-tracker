@@ -9,11 +9,15 @@ export default async function Dashboard() {
     data: { user }
   } = await supabase.auth.getUser()
 
-  const { data } = await supabase
-    .from("hafalan_entries")
-    .select("*")
-    .eq("user_id", user.id)
-    .order("tanggal", { ascending: false })
+  let data = []
+  if (user?.id) {
+    const { data: entries } = await supabase
+      .from("hafalan_entries")
+      .select("*")
+      .eq("user_id", user.id)
+      .order("tanggal", { ascending: false })
+    data = entries || []
+  }
 
   // 🔥 TOTAL AYAT
   const totalAyat =

@@ -10,10 +10,18 @@ export default async function MurajaahPage() {
     data: { user }
   } = await supabase.auth.getUser()
 
+  if (!user) {
+    return (
+      <div className="p-4 space-y-4">
+        <h1 className="text-2xl font-bold">Murajaah</h1>
+        <p className="text-gray-500">Anda belum login.</p>
+      </div>
+    )
+  }
 
-    const today = new Date().toISOString().split("T")[0]
+  const today = new Date().toISOString().split("T")[0]
 
-    const { data } = await supabase
+  const { data } = await supabase
     .from("hafalan_entries")
     .select("*")
     .eq("user_id", user.id)
