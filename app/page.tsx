@@ -1,7 +1,7 @@
 import { createSupabaseServer } from "@/lib/supabase/server"
 import LogoutButton from "@/components/LogoutButton"
 import { SURAH_LIST } from "@/config/surah"
-import { redirect } from "next/dist/server/api-utils"
+import { redirect } from "next/navigation"
 
 export default async function Dashboard() {
   const supabase = await createSupabaseServer()
